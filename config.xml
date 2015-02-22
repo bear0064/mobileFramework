@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ca.edumedia.bear0064.webapp1" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>WebApp1</name>
+    <description>
+        A custom mobile framework for Cordova
+    </description>
+    <author email="bear0064@algonquinlive.com" href="http://calebbear.com">
+        bearBranding
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
