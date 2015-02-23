@@ -124,6 +124,32 @@ p{
 }
 
 
+
+
+/******* icons *******/
+#nav1 a{
+background-image:url(../img/home.svg); 
+    background-repeat:no-repeat;
+    background-position: center -12px;
+}
+
+#nav2 a{
+background-image: url(../img/pin.svg); 
+    background-repeat:no-repeat;
+    background-position: center -12px;
+
+}
+
+
+#nav3 a{
+background-image: url(../img/contact.svg); 
+    background-repeat:no-repeat;
+    background-position: center -12px;
+
+}
+
+
+
 /******* animation *******/
 [data-role=page]{
 	position:absolute;

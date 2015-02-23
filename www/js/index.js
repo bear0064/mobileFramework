@@ -51,7 +51,76 @@ document.addEventListener("DOMContentLoaded", function(){
   //add the listener for the back button
   //window.addEventListener("popstate", browserBackButton, false);
 	loadPage(null);
+    
+    
+    
+    /***** Geolocation Part******/
+    
+
+    if (navigator.geolocation) {
+
+        var params = {
+            enableHighAccuracy: false,
+            timeout: 3600,
+            maximumAge: 60000
+        };
+
+        navigator.geolocation.getCurrentPosition(reportPosition, gpsError, params);
+
+        //to continually check the position (in case it changes) use
+        // navigator.geolocation.watchPosition( reportPosition, gpsError, params)
+    } else {
+
+        alert("Sorry, but your browser does not support location based awesomeness.")
+    }
+
+
+function reportPosition(position) {
+
+
+    var google_tile = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" + position.coords.latitude + "," +
+        position.coords.longitude + "&zoom=14&size=400x400&markers=color:red|label:Y|" +
+        position.coords.latitude + ',' + position.coords.longitude;
+
+
+    var canvas = document.createElement("canvas");
+    var context = canvas.getContext("2d");
+    canvas.width = 370;
+    canvas.height = 300;
+
+    var imageObj = new Image();
+    imageObj.src = google_tile;
+
+    imageObj.onload = function () {
+        context.drawImage(imageObj, 0, 0);
+
+        pages[1].appendChild(canvas);
+    }
+
+
+}
+
+function gpsError(error) {
+    var errors = {
+        1: 'Permission denied',
+        2: 'Position unavailable',
+        3: 'Request timeout'
+    };
+    alert("Error: " + errors[error.code]);
+}
+    
+
+/***** Geo End  *****/
+    
+    
+    
+    
 });
+
+
+
+
+
 
 //handle the touchend event
 function handleTouch(ev){
@@ -76,6 +145,8 @@ function handleNav(ev){
 
 //Deal with history API and switching divs
 function loadPage( url ){
+    
+    
 	if(url == null){
 		//home page first call
 		pages[0].style.display = 'block';
@@ -85,7 +156,7 @@ function loadPage( url ){
     for(var i=0; i < numPages; i++){
       if(pages[i].id == url){
         
-          
+       
           
           //page needs to show
 			pages[i].className = "show";
@@ -146,6 +217,28 @@ function browserBackButton(ev){
     }
   }
 }
+
+
+
+/*** Read Contacts ***/
+
+
+
+
+
+var options = new ContactFindOptions( );
+options.filter = "";  //leaving this empty will find return all contacts
+options.multiple = true;  //return multiple results
+var filter = ["displayName"];    //an array of fields to compare against the options.filter 
+navigator.contacts.find(filter, successFunc, errFunc, options);
+
+
+function successFunc( matches ){
+  for( var i=0; i<matches.length; i++){
+    console.log( matches[i].displayName );
+  }
+}
+
 
 
 
