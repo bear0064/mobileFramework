@@ -1,81 +1,237 @@
-var pages = [], links=[];
+var pages = [],
+    links = [];
 var numLinks = 0;
 var numPages = 0;
 
-
+/*
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
+    bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+       
+    
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
-                
+    receivedEvent: function (id) {
+
     }
 };
 
 app.initialize();
+*/
 
 
 
-
-//Content Loaded
-document.addEventListener("deviceready", function(){
-	//device ready listener
-	pages = document.querySelectorAll('[data-role="page"]');	
-	numPages = pages.length;
-	links = document.querySelectorAll('[data-role="link"]');
+document.addEventListener("DOMContentLoaded", function () {
+    //device ready listener
+    pages = document.querySelectorAll('[data-role="page"]');
+    numPages = pages.length;
+    links = document.querySelectorAll('[data-role="link"]');
     //Take pages
-	numLinks = links.length;
-	for(var i=0;i<numLinks; i++){
-		//either add a touch or click listener
-     if(detectTouchSupport( )){
-       links[i].addEventListener("touchend", handleTouch, false);
-     }
-		links[i].addEventListener("click", handleNav, false);	
-	}
-  //add the listener for the back button
-  //window.addEventListener("popstate", browserBackButton, false);
-	loadPage(null);
-    
-    
-    
-    /***** Geolocation Part******/
-    
+    numLinks = links.length;
 
-    if (navigator.geolocation) {
+    for (var i = 0; i < numLinks; i++) {
+        //either add a touch or click listener
 
-        var geolocationOptions = {
-            enableHighAccuracy: true,
-            timeout: 3600,
-            maximumAge: 60000
-        };
 
-        navigator.geolocation.getCurrentPosition(geolocationSuccess,
-                                         geolocationError,
-                                         [geolocationOptions]);
 
-        //to continually check the position (in case it changes) use
-        // navigator.geolocation.watchPosition( reportPosition, gpsError, params)
+
+        // Listen for the event.
+        pages[i].addEventListener('pageshow', mudda, false);
+
+
+
+
+
+
+
+        if (detectTouchSupport()) {
+            links[i].addEventListener("touchend", handleTouch, false);
+        }
+        links[i].addEventListener("click", handleNav, false);
+    }
+    //add the listener for the back button
+    //window.addEventListener("popstate", browserBackButton, false);
+    loadPage(null);
+
+
+});
+
+
+
+
+
+
+//handle the touchend event
+function handleTouch(ev) {
+    ev.preventDefault();
+    ev.stopImmediatePropagation();
+    var touch = ev.changedTouches[0]; //this is the first object touched
+    var newEvt = document.createEvent("MouseEvent");
+    //old method works across browsers, though it is deprecated.
+    newEvt.initMouseEvent("click", true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY);
+    ev.currentTarget.dispatchEvent(newEvt);
+    //send the touch to the click handler
+}
+
+//handle the click event
+function handleNav(ev) {
+    ev.preventDefault();
+    var href = ev.target.href;
+    var parts = href.split("#");
+    loadPage(parts[1]);
+    return false;
+}
+
+//Deal with history API and switching divs
+function loadPage(url) {
+
+
+
+
+
+    if (url == null) {
+        //home page first call
+        pages[0].style.display = 'block';
+        history.replaceState(null, null, "#home");
     } else {
 
-        alert("Sorry, but your browser does not support location based awesomeness.")
-    }
 
+        for (var i = 0; i < numPages; i++) {
+
+
+
+            if (pages[i].id == url) {
+
+
+                //page needs to show
+                pages[i].className = "show";
+                var event = new Event('pageshow');
+                ///Dispatch the event.
+                pages[i].dispatchEvent(event);
+                //now add the class active to animate.
+                setTimeout(showPage, 10, pages[i]);
+                pages[i].style.display = "block";
+                history.pushState(null, null, "#" + url);
+            } else {
+
+
+                pages[i].style.display = "none";
+                //remove the class active to make it animate off the page
+                pages[i].className = "show";
+                //animation off the page is set to take 0.4 seconds
+                setTimeout(hidePage, 400, pages[i]);
+            }
+        }
+
+        for (var t = 0; t < numLinks; t++) {
+            links[t].className = "";
+            if (links[t].href == location.href) {
+                links[t].className = "activetab";
+            }
+        }
+
+
+
+    }
+}
+
+
+function mudda(eve) {
+    eve.preventDefault();
+    if (eve.currentTarget.id == "two") {
+        
+        console.log('two');
+        /***** Geolocation Part******/
+    
+        
+    
+                if (navigator.geolocation) {
+        
+                    var geolocationOptions = {
+                        enableHighAccuracy: true,
+                        timeout: 40000,
+                        maximumAge: 60000
+                    };
+               
+                                       navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, geolocationOptions);
+                
+                    
+                
+                } else {
+                    alert("Sorry, but your browser does not support location based awesomeness.")
+                }
+        
+            
+
+        } else if (eve.currentTarget.id == "three") {
+            console.log('three');
+
+            
+            
+            
+	navigator.contacts.pickContact(function(contact){
+		console.log('The following contact has been selected:' + JSON.stringify(contact));
+		//Build a simple string to display the Contact - would be better in Handlebars
+		var s = "";
+		s += "<h2>"+contact.displayName+"</h2>";
+
+		if(contact.emails && contact.emails.length) {
+			s+= "Email: "+contact.emails[0].value+"<br/>";
+		}
+
+		if(contact.phoneNumbers && contact.phoneNumbers.length) {
+			s+= "Phone: "+contact.phoneNumbers[0].value+"<br/>";
+		}
+
+		if(contact.photos && contact.photos.length) {
+			s+= "<p><img src='"+contact.photos[0].value+"'></p>";
+		}
+
+		document.querySelector("#selectedContact").innerHTML=s;
+	},function(err){
+		console.log('Error: ' + err);
+	});
+
+
+        
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+function hidePage(pg) {
+    pg.className = "hide";
+    //this class replaces show
+}
+
+function showPage(pg) {
+    pg.classList.add("active");
+
+
+}
 
 function geolocationSuccess(position) {
 
@@ -110,143 +266,45 @@ function geolocationError(error) {
     };
     alert("Error: " + errors[error.code]);
 }
-    
-
-/***** Geo End  *****/
-    
-    
-    
-    
-});
 
 
 
 
 
 
-//handle the touchend event
-function handleTouch(ev){
-  ev.preventDefault();
-  ev.stopImmediatePropagation();
-  var touch = evt.changedTouches[0];        //this is the first object touched
-  var newEvt = document.createEvent("MouseEvent");	
-  //old method works across browsers, though it is deprecated.
-  newEvt.initMouseEvent("click", true, true, window, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY);
-  ev.originalTarget.dispatchEvent(newEvt);
-  //send the touch to the click handler
-}
 
-//handle the click event
-function handleNav(ev){
-	ev.preventDefault();
-	var href = ev.target.href;
-	var parts = href.split("#");
-	loadPage( parts[1] );	
-  return false;
-}
-
-//Deal with history API and switching divs
-function loadPage( url ){
-    
-    
-	if(url == null){
-		//home page first call
-		pages[0].style.display = 'block';
-		history.replaceState(null, null, "#home");	
-	}else{
-    
-    for(var i=0; i < numPages; i++){
-      if(pages[i].id == url){
-        
-       
-          
-          //page needs to show
-			pages[i].className = "show";
-			//now add the class active to animate.
-			setTimeout(showPage, 10, pages[i]);
-          
-          
-          
-        pages[i].style.display = "block";
-        history.pushState(null, null, "#" + url);	
-      }else{
-        pages[i].style.display = "none";	
-        			
-  
-          
-          			//remove the class active to make it animate off the page
-			pages[i].className = "show";
-			//animation off the page is set to take 0.4 seconds
-			setTimeout(hidePage, 400, pages[i]);
-          
-      }
-    }
-    for(var t=0; t < numLinks; t++){
-      links[t].className = "";
-      if(links[t].href == location.href){
-        links[t].className = "activetab";
-      }
-    }
-	}
-}
-
-function hidePage(pg){
-	pg.className = "hide";
-	//this class replaces show
-}
-
-function showPage(pg){
-	pg.classList.add("active");
-}
 
 
 
 //Need a listener for the popstate event to handle the back button
-function browserBackButton(ev){
-  url = location.hash;  //hash will include the "#"
-  //update the visible div and the active tab
-  for(var i=0; i < numPages; i++){
-      if(("#" + pages[i].id) == url){
-        pages[i].style.display = "block";
-      }else{
-        pages[i].style.display = "none";	
-      }
-  }
-  for(var t=0; t < numLinks; t++){
-    links[t].className = "";
-    if(links[t].href == location.href){
-      links[t].className = "activetab";
+function browserBackButton(ev) {
+    url = location.hash; //hash will include the "#"
+    //update the visible div and the active tab
+    for (var i = 0; i < numPages; i++) {
+        if (("#" + pages[i].id) == url) {
+            pages[i].style.display = "block";
+        } else {
+            pages[i].style.display = "none";
+        }
     }
-  }
+    for (var t = 0; t < numLinks; t++) {
+        links[t].className = "";
+        if (links[t].href == location.href) {
+            links[t].className = "activetab";
+        }
+    }
 }
 
 
 
-/*** Read Contacts ***/
 
-
-
-
-
-var options = new ContactFindOptions( );
-options.filter = "";  //leaving this empty will find return all contacts
-options.multiple = true;  //return multiple results
-var filter = ["displayName"];    //an array of fields to compare against the options.filter 
-navigator.contacts.find(filter, successFunc, errFunc, options);
-
-
-function successFunc( matches ){
-  for( var i=0; i<matches.length; i++){
-    console.log( matches[i].displayName );
-  }
-}
 
 
 
 
 //Test for browser support of touch events
-function detectTouchSupport( ){
-  msGesture = navigator && navigator.msPointerEnabled && navigator.msMaxTouchPoints > 0 && MSGesture;
-  var touchSupport = (("ontouchstart" in window) || msGesture || (window.DocumentTouch && document instanceof DocumentTouch));
-  return touchSupport;
+function detectTouchSupport() {
+    msGesture = navigator && navigator.msPointerEnabled && navigator.msMaxTouchPoints > 0 && MSGesture;
+    var touchSupport = (("ontouchstart" in window) || msGesture || (window.DocumentTouch && document instanceof DocumentTouch));
+    return touchSupport;
 }

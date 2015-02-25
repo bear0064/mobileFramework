@@ -82,8 +82,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "org.apache.cordova.contacts": "0.2.16",
-    "org.apache.cordova.geolocation": "0.3.12",
     "plugin.google.maps": "1.2.4",
+    "org.apache.cordova.console": "0.2.13",
     "plugin.http.request": "1.0.0",
     "com.google.playservices": "21.0.0",
     "android.support.v4": "21.0.1"

@@ -78,31 +78,17 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
-        "id": "org.apache.cordova.geolocation.Coordinates",
+        "file": "plugins/org.apache.cordova.console/www/console-via-logger.js",
+        "id": "org.apache.cordova.console.console",
         "clobbers": [
-            "Coordinates"
+            "console"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.geolocation/www/PositionError.js",
-        "id": "org.apache.cordova.geolocation.PositionError",
+        "file": "plugins/org.apache.cordova.console/www/logger.js",
+        "id": "org.apache.cordova.console.logger",
         "clobbers": [
-            "PositionError"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/Position.js",
-        "id": "org.apache.cordova.geolocation.Position",
-        "clobbers": [
-            "Position"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/geolocation.js",
-        "id": "org.apache.cordova.geolocation.geolocation",
-        "clobbers": [
-            "navigator.geolocation"
+            "cordova.logger"
         ]
     }
 ];
@@ -110,7 +96,7 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "org.apache.cordova.contacts": "0.2.16",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.console": "0.2.13"
 }
 // BOTTOM OF METADATA
 });

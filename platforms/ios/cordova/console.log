@@ -54,3 +54,34 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 
 2015-02-23 16:13:02.075 WebApp1[50932:3191501] Resetting plugins due to page load.
 2015-02-23 16:13:02.780 WebApp1[50932:3191501] Finished load of: file:///Users/Retribution/Library/Developer/CoreSimulator/Devices/D5F84775-49DB-47A6-B330-5055289F063B/data/Containers/Bundle/Application/6DC85620-B2B3-4BA8-B754-9EF9B128CB76/WebApp1.app/www/index.html#home
+2015-02-25 15:32:05.151 WebApp1[6565:469207] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Retribution/Library/Developer/CoreSimulator/Devices/D5F84775-49DB-47A6-B330-5055289F063B/data/Containers/Data/Application/DF224CA8-7C79-4C92-9F6E-96A31E77AAD5/Library/Cookies/Cookies.binarycookies
+2015-02-25 15:32:05.353 WebApp1[6565:469207] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-25 15:32:05.354 WebApp1[6565:469207] Multi-tasking -> Device: YES, App: YES
+2015-02-25 15:32:05.364 WebApp1[6565:469207] Unlimited access to network resources
+2015-02-25 15:32:05.371 WebApp1[6565:469207] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-02-25 15:32:05.837 WebApp1[6565:469207] Resetting plugins due to page load.
+2015-02-25 15:32:06.102 WebApp1[6565:469207] Finished load of: file:///Users/Retribution/Library/Developer/CoreSimulator/Devices/D5F84775-49DB-47A6-B330-5055289F063B/data/Containers/Bundle/Application/AC96BA00-596C-4048-9C20-7E540B4D99FE/WebApp1.app/www/index.html#home
+2015-02-25 15:32:09.910 WebApp1[6565:469207] two
+2015-02-25 15:32:09.912 WebApp1[6565:469207] ERROR: Wrong type for parameter "options" of geolocation.getCurrentPosition: Expected Object, but got Array.
+2015-02-25 16:00:08.391 WebApp1[7219:774332] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/Retribution/Library/Developer/CoreSimulator/Devices/D5F84775-49DB-47A6-B330-5055289F063B/data/Containers/Data/Application/F0C86347-C390-42F2-99FE-80FCD563D21C/Library/Cookies/Cookies.binarycookies
+2015-02-25 16:00:08.571 WebApp1[7219:774332] Apache Cordova native platform version 3.7.0 is starting.
+2015-02-25 16:00:08.571 WebApp1[7219:774332] Multi-tasking -> Device: YES, App: YES
+2015-02-25 16:00:08.590 WebApp1[7219:774332] Unlimited access to network resources
+2015-02-25 16:00:08.592 WebApp1[7219:774332] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-02-25 16:00:08.781 WebApp1[7219:774332] Resetting plugins due to page load.
+2015-02-25 16:00:08.901 WebApp1[7219:774332] Finished load of: file:///Users/Retribution/Library/Developer/CoreSimulator/Devices/D5F84775-49DB-47A6-B330-5055289F063B/data/Containers/Bundle/Application/E1FDAE26-F170-45BE-866B-5F7BDDD3A9AF/WebApp1.app/www/index.html#home
+2015-02-25 16:00:15.671 WebApp1[7219:774332] two

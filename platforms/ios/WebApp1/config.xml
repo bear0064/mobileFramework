@@ -22,8 +22,8 @@
     <feature name="Contacts">
         <param name="ios-package" value="CDVContacts" />
     </feature>
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
     </feature>
     <name>WebApp1</name>
     <description>

@@ -45,14 +45,6 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 1
                         }
                     ],
                     "/manifest": [
@@ -103,11 +95,11 @@
         "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
         },
-        "org.apache.cordova.geolocation": {
-            "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
-        },
         "plugin.google.maps": {
             "API_KEY_FOR_ANDROID": "key",
+            "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
+        },
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
         }
     },

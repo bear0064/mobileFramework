@@ -25,12 +25,7 @@
                             "count": 1
                         }
                     ],
-                    "CoreLocation.framework": [
-                        {
-                            "xml": "false",
-                            "count": 1
-                        }
-                    ]
+                    "CoreLocation.framework": []
                 }
             },
             "config.xml": {
@@ -41,7 +36,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -49,12 +44,7 @@
             },
             "*-Info.plist": {
                 "parents": {
-                    "NSLocationWhenInUseUsageDescription": [
-                        {
-                            "xml": "<string />",
-                            "count": 1
-                        }
-                    ]
+                    "NSLocationWhenInUseUsageDescription": []
                 }
             }
         }
@@ -63,7 +53,7 @@
         "org.apache.cordova.contacts": {
             "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
         },
-        "org.apache.cordova.geolocation": {
+        "org.apache.cordova.console": {
             "PACKAGE_NAME": "ca.edumedia.bear0064.webapp1"
         }
     },
