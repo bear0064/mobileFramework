@@ -155,6 +155,7 @@ function mudda(eve) {
     eve.preventDefault();
     if (eve.currentTarget.id == "two") {
         
+        
         console.log('two');
         /***** Geolocation Part******/
     
@@ -229,44 +230,9 @@ function errFunc(contactError) {
      alert('Error: ' + contactError);
 }
             
-            
-            
-            
-/*            
-	navigator.contacts.pickContact(function(contact){
-		console.log('The following contact has been selected:' + JSON.stringify(contact));
-		//Build a simple string to display the Contact - would be better in Handlebars
-		var s = "";
-		s += "<h2>"+contact.displayName+"</h2>";
 
-		if(contact.emails && contact.emails.length) {
-			s+= "Email: "+contact.emails[0].value+"<br/>";
-		}
-
-		if(contact.phoneNumbers && contact.phoneNumbers.length) {
-			s+= "Phone: "+contact.phoneNumbers[0].value+"<br/>";
-		}
-
-		if(contact.photos && contact.photos.length) {
-			s+= "<p><img src='"+contact.photos[0].value+"'></p>";
-		}
-
-		document.querySelector("#selectedContact").innerHTML=s;
-	},function(err){
-		console.log('Error: ' + err);
-	});
-
-*/
-        
         }
 }
-
-
-
-
-
-
-
 
 
 
@@ -291,7 +257,11 @@ function geolocationSuccess(position) {
 
 
     var canvas = document.createElement("canvas");
+
     var context = canvas.getContext("2d");
+
+
+    
     canvas.width = 370;
     canvas.height = 300;
 
@@ -300,8 +270,15 @@ function geolocationSuccess(position) {
 
     imageObj.onload = function () {
         context.drawImage(imageObj, 0, 0);
-
+        
+        
+        if (document.querySelector('canvas')){
+        canvas.width = canvas.width;
         pages[1].appendChild(canvas);
+            
+        }else{    
+        pages[1].appendChild(canvas);
+    }
     }
 
 
@@ -315,11 +292,6 @@ function geolocationError(error) {
     };
     alert("Error: " + errors[error.code]);
 }
-
-
-
-
-
 
 
 
@@ -343,9 +315,6 @@ function browserBackButton(ev) {
         }
     }
 }
-
-
-
 
 
 

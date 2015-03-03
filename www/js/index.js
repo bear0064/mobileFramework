@@ -205,7 +205,7 @@ navigator.contacts.find(filter, successFunc, errFunc, options);
 var s = "";
 s += "<h2>"+rand.displayName+"</h2>";
 
-if(rand .emails && rand.emails.length) {
+if(rand.emails && rand.emails.length) {
 s+= "Email: "+rand.emails[0].value+"<br/>";
 }
 
@@ -273,7 +273,7 @@ function geolocationSuccess(position) {
         
         
         if (document.querySelector('canvas')){
-            canvas.width = canvas.width;
+        canvas.width = canvas.width;
         pages[1].appendChild(canvas);
             
         }else{    
@@ -292,11 +292,6 @@ function geolocationError(error) {
     };
     alert("Error: " + errors[error.code]);
 }
-
-
-
-
-
 
 
 
