@@ -37,7 +37,7 @@ p{
 	as well as the navigation */
 	position:absolute;
 	top:7rem;
-	padding:1rem 1rem 4rem 1rem;
+	padding:1rem 0rem 4rem 1rem;
 	display:none;
 }
 .active{
